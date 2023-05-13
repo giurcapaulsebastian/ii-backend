@@ -9,6 +9,9 @@ def create_database():
         print(f"Error while creating tables: {e}")
 
 
+create_database()
+
+
 def get_db():
     db = _database.SessionLocal()
     try:
