@@ -24,7 +24,7 @@ orjson==3.8.11
 passlib==1.7.4
 poyo==0.5.0
 prompt-toolkit==3.0.38
-psycopg2==2.9.6
+psycopg2-binary
 pydantic==1.10.7
 PyJWT==2.6.0
 python-dateutil==2.8.2

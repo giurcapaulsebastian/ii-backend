@@ -12,7 +12,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = os.getenv("PROJECT_NAME")
+    PROJECT_NAME: str = "ii-backend"
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
@@ -23,10 +23,10 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER")
-    POSTGRES_USER: str = os.getenv("POSTGRES_USER")
-    POSTGRES_PASSWORD: str = os.getenv("POSTGRES_PASSWORD")
-    POSTGRES_DB: str = os.getenv("POSTGRES_DB")
+    POSTGRES_SERVER: str = "localhost"
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = ""
+    POSTGRES_DB: str = "rest_backend"
     DATABASE_URI: str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}/{POSTGRES_DB}"
     ASD: str = "21321"
 
