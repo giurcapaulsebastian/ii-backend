@@ -140,3 +140,4 @@ cython_debug/
 # Text Editor
 .vscode
 .idea/
+app/core/settings.py

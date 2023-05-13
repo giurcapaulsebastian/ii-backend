@@ -8,7 +8,9 @@ from app.database import engine as _engine
 
 
 from app.routers import (
-    users as users_router
+    users as users_router,
+    notes as notes_router,
+    quiz as quiz_router
 )
 
 _models.Base.metadata.create_all(bind=_engine)
@@ -24,6 +26,9 @@ def get_application():
         allow_headers=["*"],
     )
     app.include_router(users_router.router)
+    app.include_router(notes_router.router)
+    app.include_router(quiz_router.router)
+
     return app
 
 
