@@ -25,7 +25,7 @@ async def create_quiz_result(
     return await _quiz_service.create_quiz_result(user=user, db=db, quiz=quiz_result)
 
 
-@router.post("/get_quiz/{quiz_id}", tags=["quizzes"], response_model=_quiz_schema.Quiz)
+@router.get("/get_quiz/{quiz_id}", tags=["quizzes"], response_model=_quiz_schema.Quiz)
 async def get_quiz(
         quiz_id: int,
         user: _user_schema.User = fastapi.Depends(_user_service.get_current_user),
@@ -34,7 +34,7 @@ async def get_quiz(
     return await _quiz_service.get_quiz(user=user, db=db, quiz_id=quiz_id)
 
 
-@router.post("/quiz_result", tags=["quizzes"], response_model=_quiz_schema.QuizResult)
+@router.get("/quiz_result", tags=["quizzes"], response_model=_quiz_schema.QuizResult)
 async def get_quiz_result(
         quiz_id: int,
         user: _user_schema.User = fastapi.Depends(_user_service.get_current_user),
@@ -43,7 +43,7 @@ async def get_quiz_result(
     return await _quiz_service.get_quiz_result(user=user, db=db, quiz_id=quiz_id)
 
 
-@router.post("/quizzes_results", tags=["quizzes"], response_model=List[_quiz_schema.QuizResult])
+@router.get("/quizzes_results", tags=["quizzes"], response_model=List[_quiz_schema.QuizResult])
 async def get_quiz_results(
         user: _user_schema.User = fastapi.Depends(_user_service.get_current_user),
         db: orm.Session = fastapi.Depends(_database_service.get_db)

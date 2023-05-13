@@ -50,7 +50,7 @@ async def create_note(
 #     )
 
 
-@router.post("/get_note/{note_id}", tags=["notes"], response_model=_note_schema.Note)
+@router.get("/get_note/{note_id}", tags=["notes"], response_model=_note_schema.Note)
 async def get_note(
         note_id: int,
         user: _user_schema.User = fastapi.Depends(_user_service.get_current_user),
@@ -59,7 +59,7 @@ async def get_note(
     return await _note_service.get_note(user=user, db=db, note_id=note_id)
 
 
-@router.post("/notes", tags=["notes"], response_model=List[_note_schema.Note])
+@router.get("/notes", tags=["notes"], response_model=List[_note_schema.Note])
 async def get_notes(
         user: _user_schema.User = fastapi.Depends(_user_service.get_current_user),
         db: orm.Session = fastapi.Depends(_database_service.get_db)
