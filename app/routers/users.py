@@ -33,6 +33,8 @@ async def generate_token(
         form_data: security.OAuth2PasswordRequestForm = fastapi.Depends(),
         db: orm.Session = fastapi.Depends(_database_service.get_db)
 ):
+    print(form_data.username)
+    print(form_data.password)
     user = await _user_service.authenticate_user(form_data.username, form_data.password, db)
 
     if not user:

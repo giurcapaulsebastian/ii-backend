@@ -33,6 +33,11 @@ async def get_quiz(
 ):
     return await _quiz_service.get_quiz(user=user, db=db, quiz_id=quiz_id)
 
+@router.get("/get_all_quizez", tags=["quizzes"], response_model=List[_quiz_schema.Quiz])
+async def get_all_quizes(
+        db: orm.Session = fastapi.Depends(_database_service.get_db)
+):
+    return await _quiz_service.get_all_quizes(db=db)
 
 @router.get("/quiz_result", tags=["quizzes"], response_model=_quiz_schema.QuizResult)
 async def get_quiz_result(
@@ -49,3 +54,4 @@ async def get_quiz_results(
         db: orm.Session = fastapi.Depends(_database_service.get_db)
 ):
     return await _quiz_service.get_quiz_results(user=user, db=db)
+

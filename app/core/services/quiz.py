@@ -31,6 +31,12 @@ async def get_quiz(user: _user_schema.User, db: _orm.Session, quiz_id: int):
         raise fastapi.HTTPException(status_code=404, detail="Quiz with this id doesn't exist!")
     return _quiz_schema.Quiz.from_orm(quiz)
 
+async def get_all_quizes(db: _orm.Session):
+    quizes = db.query(_models.Quiz).all()
+    if quizes is None:
+        raise fastapi.HTTPException(status_code=404, detail="User doesn't have notes")
+    return list(map(_quiz_schema.Quiz.from_orm, quizes))
+
 
 async def get_quiz_result(user: _user_schema.User, db: _orm.Session, quiz_id: int):
     quiz = await _quiz_results_selector(db=db, quiz_id=quiz_id, user=user)
